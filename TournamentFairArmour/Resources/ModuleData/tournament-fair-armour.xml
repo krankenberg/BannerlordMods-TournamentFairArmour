@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NPCCharacters>
+    <NPCCharacter id="tournament_fair_armour_equipment_override_default"
+                  culture="Culture.neutral_culture">
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.scarf"/>
+            <equipment slot="Body"
+                       id="Item.bandit_gambeson"/>
+            <equipment slot="Gloves"
+                       id="Item.leather_gloves"/>
+            <equipment slot="Leg"
+                       id="Item.strapped_shoes"/>
+        </equipmentSet>
+    </NPCCharacter>
+
+    <NPCCharacter id="tournament_fair_armour_equipment_override_aserai"
+                  culture="Culture.aserai">
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.wrapped_scarf"/>
+            <equipment slot="Body"
+                       id="Item.short_padded_robe"/>
+            <equipment slot="Gloves"
+                       id="Item.buttoned_leather_bracers"/>
+            <equipment slot="Leg"
+                       id="Item.steppe_leather_boots"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.wrapped_scarf"/>
+            <equipment slot="Body"
+                       id="Item.short_padded_robe"/>
+            <equipment slot="Gloves"
+                       id="Item.rough_tied_bracers"/>
+            <equipment slot="Leg"
+                       id="Item.steppe_leather_boots"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.desert_leather_shoulderpad"/>
+            <equipment slot="Body"
+                       id="Item.long_padded_robe"/>
+            <equipment slot="Gloves"
+                       id="Item.rough_tied_bracers"/>
+            <equipment slot="Leg"
+                       id="Item.steppe_leather_boots"/>
+        </equipmentSet>
+    </NPCCharacter>
+
+    <NPCCharacter id="tournament_fair_armour_equipment_override_vlandia"
+                  culture="Culture.vlandia">
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.scarf"/>
+            <equipment slot="Body"
+                       id="Item.sleeveless_padded_short_coat"/>
+            <equipment slot="Gloves"
+                       id="Item.buttoned_leather_bracers"/>
+            <equipment slot="Leg"
+                       id="Item.empire_horseman_boots"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Body"
+                       id="Item.sleeveless_padded_short_coat"/>
+            <equipment slot="Gloves"
+                       id="Item.buttoned_leather_bracers"/>
+            <equipment slot="Leg"
+                       id="Item.empire_horseman_boots"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.scarf"/>
+            <equipment slot="Body"
+                       id="Item.padded_short_coat"/>
+            <equipment slot="Gloves"
+                       id="Item.buttoned_leather_bracers"/>
+            <equipment slot="Leg"
+                       id="Item.empire_horseman_boots"/>
+        </equipmentSet>
+    </NPCCharacter>
+
+    <NPCCharacter id="tournament_fair_armour_equipment_override_sturgia"
+                  culture="Culture.sturgia">
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.scarf"/>
+            <equipment slot="Body"
+                       id="Item.northern_padded_gambeson"/>
+            <equipment slot="Leg"
+                       id="Item.highland_boots"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Body"
+                       id="Item.northern_padded_gambeson"/>
+            <equipment slot="Gloves"
+                       id="Item.leather_gloves"/>
+            <equipment slot="Leg"
+                       id="Item.highland_boots"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.wrapped_scarf"/>
+            <equipment slot="Body"
+                       id="Item.northern_padded_gambeson"/>
+            <equipment slot="Gloves"
+                       id="Item.buttoned_leather_bracers"/>
+            <equipment slot="Leg"
+                       id="Item.highland_boots"/>
+        </equipmentSet>
+    </NPCCharacter>
+
+    <NPCCharacter id="tournament_fair_armour_equipment_override_khuzait"
+                  culture="Culture.khuzait">
+        <equipmentSet>
+            <equipment slot="Body"
+                       id="Item.khuzait_sturdy_armor"/>
+            <equipment slot="Gloves"
+                       id="Item.studded_leather_vambraces"/>
+            <equipment slot="Leg"
+                       id="Item.eastern_leather_boots"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.wrapped_scarf"/>
+            <equipment slot="Body"
+                       id="Item.khuzait_sturdy_armor"/>
+            <equipment slot="Gloves"
+                       id="Item.studded_leather_vambraces"/>
+            <equipment slot="Leg"
+                       id="Item.eastern_leather_boots"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Body"
+                       id="Item.khuzait_sturdy_armor"/>
+            <equipment slot="Gloves"
+                       id="Item.studded_leather_vambraces"/>
+            <equipment slot="Leg"
+                       id="Item.eastern_leather_boots"/>
+        </equipmentSet>
+    </NPCCharacter>
+
+    <NPCCharacter id="tournament_fair_armour_equipment_override_empire"
+                  culture="Culture.empire">
+        <equipmentSet>
+            <equipment slot="Body"
+                       id="Item.imperial_padded_cloth"/>
+            <equipment slot="Gloves"
+                       id="Item.guarded_padded_vambrace"/>
+            <equipment slot="Leg"
+                       id="Item.leather_shoes"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Body"
+                       id="Item.tunic_with_rolled_cloth"/>
+            <equipment slot="Gloves"
+                       id="Item.padded_vambrace"/>
+            <equipment slot="Leg"
+                       id="Item.wrapped_shoes"/>
+        </equipmentSet>
+    </NPCCharacter>
+
+    <NPCCharacter id="tournament_fair_armour_equipment_override_battania"
+                  culture="Culture.battania">
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.scarf"/>
+            <equipment slot="Body"
+                       id="Item.battanian_savage_armor"/>
+            <equipment slot="Gloves"
+                       id="Item.highland_gloves"/>
+            <equipment slot="Leg"
+                       id="Item.battania_woodland_boots"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.scarf"/>
+            <equipment slot="Body"
+                       id="Item.battanian_savage_armor"/>
+            <equipment slot="Gloves"
+                       id="Item.highland_gloves"/>
+            <equipment slot="Leg"
+                       id="Item.battania_woodland_boots"/>
+        </equipmentSet>
+        <equipmentSet>
+            <equipment slot="Cape"
+                       id="Item.scarf"/>
+            <equipment slot="Body"
+                       id="Item.battanian_savage_armor"/>
+            <equipment slot="Gloves"
+                       id="Item.highland_gloves"/>
+            <equipment slot="Leg"
+                       id="Item.battania_woodland_boots"/>
+        </equipmentSet>
+    </NPCCharacter>
+
+</NPCCharacters>

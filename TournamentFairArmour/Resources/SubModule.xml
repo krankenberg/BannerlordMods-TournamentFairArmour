@@ -1,0 +1,34 @@
+<Module>
+    <Name value="Tournament Fair Armour"/>
+    <Id value="TournamentFairArmour"/>
+    <Version value="v1.0.1"/>
+    <Official value="false"/>
+    <SingleplayerModule value="true"/>
+    <MultiplayerModule value="false"/>
+    <DependedModules>
+        <DependedModule Id="Native"/>
+        <DependedModule Id="SandBoxCore"/>
+        <DependedModule Id="Sandbox"/>
+        <DependedModule Id="StoryMode"/>
+    </DependedModules>
+    <SubModules>
+        <SubModule>
+            <Name value="TournamentFairArmour"/>
+            <DLLName value="TournamentFairArmour.dll"/>
+            <SubModuleClassType value="TournamentFairArmour.TournamentFairArmourSubModule"/>
+            <Tags>
+                <Tag key="DedicatedServerType" value="none"/>
+                <Tag key="IsNoRenderModeElement" value="false"/>
+            </Tags>
+        </SubModule>
+    </SubModules>
+    <Xmls>
+        <XmlNode>
+            <XmlName type="1" id="NPCCharacters" path="tournament-fair-armour"/>
+            <IncludedGameTypes>
+                <GameType value="Campaign"/>
+                <GameType value="CampaignStoryMode"/>
+            </IncludedGameTypes>
+        </XmlNode>
+    </Xmls>
+</Module>
