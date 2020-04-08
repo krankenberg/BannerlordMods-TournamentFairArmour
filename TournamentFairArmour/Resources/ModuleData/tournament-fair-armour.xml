@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <NPCCharacters>
-    <NPCCharacter id="tournament_fair_armour_equipment_override_default"
-                  culture="Culture.neutral_culture">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_default">
         <equipmentSet>
             <equipment slot="Cape"
                        id="Item.scarf"/>

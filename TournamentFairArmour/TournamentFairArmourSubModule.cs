@@ -10,7 +10,7 @@ namespace TournamentFairArmour
     public class TournamentFairArmourSubModule : MBSubModuleBase
     {
         private const string StringIdPrefix = "tournament_fair_armour_equipment_override_";
-        private const string NeutralCultureStringId = "neutral_culture";
+        private const string DefaultEquipmentSetStringId = "default";
 
         internal static readonly EquipmentIndex[] OverriddenEquipmentIndices =
         {
@@ -21,23 +21,33 @@ namespace TournamentFairArmour
             EquipmentIndex.Leg
         };
 
-        private Dictionary<string, IEnumerable<Equipment>> _equipmentSetsByCulture;
+        private Dictionary<string, Equipment> _equipmentSetByCulture;
 
         public override void OnGameInitializationFinished(Game game)
         {
-            _equipmentSetsByCulture = new Dictionary<string, IEnumerable<Equipment>>();
-            var allCharacterObjects = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>();
-            allCharacterObjects
-                .Where(characterObject => characterObject.StringId.StartsWith(StringIdPrefix))
-                .ToList()
-                .ForEach(AddEquipmentOverride);
+            if (game.GameType is Campaign campaign)
+            {
+                _equipmentSetByCulture = new Dictionary<string, Equipment>();
+                AddDefaultEquipmentOverride();
+                var allCharacterObjects = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>();
+                allCharacterObjects
+                    .Where(characterObject => characterObject.StringId.StartsWith(StringIdPrefix))
+                    .ToList()
+                    .ForEach(AddEquipmentOverride);
+            }
+        }
+
+        private void AddDefaultEquipmentOverride()
+        {
+            var characterObject = MBObjectManager.Instance.GetObject<CharacterObject>(StringIdPrefix + DefaultEquipmentSetStringId);
+            _equipmentSetByCulture[DefaultEquipmentSetStringId] = characterObject.BattleEquipments.First();
         }
 
         private void AddEquipmentOverride(CharacterObject characterObject)
         {
             if (characterObject.Culture != null)
             {
-                _equipmentSetsByCulture[characterObject.Culture.StringId] = characterObject.BattleEquipments;
+                _equipmentSetByCulture[characterObject.Culture.StringId] = characterObject.BattleEquipments.First();
             }
         }
 
@@ -51,7 +61,7 @@ namespace TournamentFairArmour
 
         private void AddTournamentFairArmourMissionListener(Mission mission)
         {
-            var equipmentSets = GetEquipmentSetsByCultureOfCurrentSettlement();
+            var equipmentSets = GetEquipmentSetByCultureOfCurrentSettlement();
             if (equipmentSets != null)
             {
                 mission.AddListener(CreateTournamentFairArmourMissionListener(equipmentSets));
@@ -62,29 +72,28 @@ namespace TournamentFairArmour
             }
         }
 
-        private IEnumerable<Equipment> GetEquipmentSetsByCultureOfCurrentSettlement()
+        private Equipment GetEquipmentSetByCultureOfCurrentSettlement()
         {
             var cultureStringId = Settlement.CurrentSettlement?.Culture?.StringId;
-            _equipmentSetsByCulture.TryGetValue(cultureStringId ?? string.Empty, out var equipmentSets);
-            return equipmentSets;
+            _equipmentSetByCulture.TryGetValue(cultureStringId ?? string.Empty, out var equipmentSet);
+            return equipmentSet;
         }
 
         private void AddListenerWithDefaultEquipmentSets(Mission mission)
         {
-            _equipmentSetsByCulture.TryGetValue(NeutralCultureStringId, out var equipmentSets);
+            _equipmentSetByCulture.TryGetValue(DefaultEquipmentSetStringId, out var equipmentSets);
             if (equipmentSets != null)
             {
                 mission.AddListener(CreateTournamentFairArmourMissionListener(equipmentSets));
             }
         }
 
-        private TournamentFairArmourMissionListener CreateTournamentFairArmourMissionListener(IEnumerable<Equipment> equipmentSets)
+        private TournamentFairArmourMissionListener CreateTournamentFairArmourMissionListener(Equipment equipmentSet)
         {
             var tournamentEquipment = new Equipment();
-            var randomEquipment = equipmentSets.GetRandomElement();
             foreach (var overriddenEquipmentIndex in OverriddenEquipmentIndices)
             {
-                tournamentEquipment[overriddenEquipmentIndex] = randomEquipment[overriddenEquipmentIndex];
+                tournamentEquipment[overriddenEquipmentIndex] = equipmentSet[overriddenEquipmentIndex];
             }
 
             return new TournamentFairArmourMissionListener(tournamentEquipment);
