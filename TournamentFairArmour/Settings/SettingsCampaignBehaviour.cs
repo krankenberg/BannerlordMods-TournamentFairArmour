@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.Core;
 using TournamentFairArmour.Settings.Synchronisation;
 
@@ -9,7 +7,6 @@ namespace TournamentFairArmour.Settings
 {
     public class SettingsCampaignBehaviour : CampaignBehaviorBase
     {
-
         public Dictionary<string, Equipment> DefaultEquipmentsByCulture = new Dictionary<string, Equipment>();
 
         private Dictionary<string, Equipment> _equipmentsByCulture = new Dictionary<string, Equipment>();
