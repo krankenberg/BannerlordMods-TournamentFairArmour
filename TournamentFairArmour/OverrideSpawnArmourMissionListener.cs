@@ -3,11 +3,11 @@ using TaleWorlds.MountAndBlade;
 
 namespace TournamentFairArmour
 {
-    public class TournamentFairArmourMissionListener : IMissionListener
+    public class OverrideSpawnArmourMissionListener : IMissionListener
     {
         private readonly Equipment _tournamentEquipment;
 
-        public TournamentFairArmourMissionListener(Equipment tournamentEquipment)
+        public OverrideSpawnArmourMissionListener(Equipment tournamentEquipment)
         {
             _tournamentEquipment = tournamentEquipment;
         }

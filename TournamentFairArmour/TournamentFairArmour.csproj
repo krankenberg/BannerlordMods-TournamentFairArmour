@@ -247,8 +247,8 @@
     <Compile Include="Settings\SettingsMenu.cs" />
     <Compile Include="Settings\Synchronisation\DataSynchroniser.cs" />
     <Compile Include="Settings\Synchronisation\SettingsSaveDefiner.cs" />
-    <Compile Include="TournamentFairArmourMissionListener.cs" />
-      <Compile Include="SubModule.cs"/>
+    <Compile Include="OverrideSpawnArmourMissionListener.cs"/>
+    <Compile Include="SubModule.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

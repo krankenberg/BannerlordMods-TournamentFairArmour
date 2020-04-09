@@ -68,16 +68,16 @@ namespace TournamentFairArmour
         {
             if (mission.HasMissionBehaviour<TournamentBehavior>())
             {
-                AddTournamentFairArmourMissionListener(mission);
+                AddOverrideSpawnArmourMissionListener(mission);
             }
         }
 
-        private void AddTournamentFairArmourMissionListener(Mission mission)
+        private void AddOverrideSpawnArmourMissionListener(Mission mission)
         {
             var equipment = GetEquipmentByCultureOfCurrentSettlement();
             if (equipment != null)
             {
-                mission.AddListener(CreateTournamentFairArmourMissionListener(equipment));
+                mission.AddListener(CreateOverrideSpawnArmourMissionListener(equipment));
             }
         }
 
@@ -87,7 +87,7 @@ namespace TournamentFairArmour
             return _settingsCampaignBehaviour.GetEquipment(cultureStringId);
         }
 
-        private TournamentFairArmourMissionListener CreateTournamentFairArmourMissionListener(Equipment equipmentSet)
+        private OverrideSpawnArmourMissionListener CreateOverrideSpawnArmourMissionListener(Equipment equipmentSet)
         {
             var tournamentEquipment = new Equipment();
             foreach (var overriddenEquipmentIndex in OverriddenEquipmentIndices)
@@ -95,7 +95,7 @@ namespace TournamentFairArmour
                 tournamentEquipment[overriddenEquipmentIndex] = equipmentSet[overriddenEquipmentIndex];
             }
 
-            return new TournamentFairArmourMissionListener(tournamentEquipment);
+            return new OverrideSpawnArmourMissionListener(tournamentEquipment);
         }
     }
 }
