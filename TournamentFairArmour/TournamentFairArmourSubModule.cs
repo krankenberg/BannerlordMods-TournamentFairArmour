@@ -4,13 +4,15 @@ using SandBox.TournamentMissions.Missions;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TournamentFairArmour.Settings;
+using TournamentFairArmour.Settings.Synchronisation;
 
 namespace TournamentFairArmour
 {
     public class TournamentFairArmourSubModule : MBSubModuleBase
     {
+        internal const string DefaultEquipmentSetStringId = "default";
         private const string StringIdPrefix = "tournament_fair_armour_equipment_override_";
-        private const string DefaultEquipmentSetStringId = "default";
 
         internal static readonly EquipmentIndex[] OverriddenEquipmentIndices =
         {
@@ -21,33 +23,44 @@ namespace TournamentFairArmour
             EquipmentIndex.Leg
         };
 
-        private Dictionary<string, Equipment> _equipmentSetByCulture;
+        private SettingsCampaignBehaviour _settingsCampaignBehaviour;
 
-        public override void OnGameInitializationFinished(Game game)
+        protected override void OnGameStart(Game game, IGameStarter gameStarterObject)
         {
             if (game.GameType is Campaign campaign)
             {
-                _equipmentSetByCulture = new Dictionary<string, Equipment>();
-                AddDefaultEquipmentOverride();
+                CampaignGameStarter campaignGameStarter = (CampaignGameStarter) gameStarterObject;
+                _settingsCampaignBehaviour = new SettingsCampaignBehaviour(campaign, new DataSynchroniser());
+                campaignGameStarter.AddBehavior(_settingsCampaignBehaviour);
+            }
+        }
+
+        public override void OnGameInitializationFinished(Game game)
+        {
+            if (game.GameType is Campaign)
+            {
+                var defaultEquipmentsByCulture = new Dictionary<string, Equipment>();
+                AddDefaultEquipmentOverride(defaultEquipmentsByCulture);
                 var allCharacterObjects = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>();
                 allCharacterObjects
                     .Where(characterObject => characterObject.StringId.StartsWith(StringIdPrefix))
                     .ToList()
-                    .ForEach(AddEquipmentOverride);
+                    .ForEach(characterObject => AddEquipmentOverride(characterObject, defaultEquipmentsByCulture));
+                _settingsCampaignBehaviour.DefaultEquipmentsByCulture = defaultEquipmentsByCulture;
             }
         }
 
-        private void AddDefaultEquipmentOverride()
+        private void AddDefaultEquipmentOverride(Dictionary<string, Equipment> equipmentSetByCulture)
         {
             var characterObject = MBObjectManager.Instance.GetObject<CharacterObject>(StringIdPrefix + DefaultEquipmentSetStringId);
-            _equipmentSetByCulture[DefaultEquipmentSetStringId] = characterObject.BattleEquipments.First();
+            equipmentSetByCulture[DefaultEquipmentSetStringId] = characterObject.BattleEquipments.First();
         }
 
-        private void AddEquipmentOverride(CharacterObject characterObject)
+        private void AddEquipmentOverride(CharacterObject characterObject, Dictionary<string, Equipment> equipmentSetByCulture)
         {
             if (characterObject.Culture != null)
             {
-                _equipmentSetByCulture[characterObject.Culture.StringId] = characterObject.BattleEquipments.First();
+                equipmentSetByCulture[characterObject.Culture.StringId] = characterObject.BattleEquipments.First();
             }
         }
 
@@ -61,31 +74,17 @@ namespace TournamentFairArmour
 
         private void AddTournamentFairArmourMissionListener(Mission mission)
         {
-            var equipmentSets = GetEquipmentSetByCultureOfCurrentSettlement();
-            if (equipmentSets != null)
+            var equipment = GetEquipmentByCultureOfCurrentSettlement();
+            if (equipment != null)
             {
-                mission.AddListener(CreateTournamentFairArmourMissionListener(equipmentSets));
-            }
-            else
-            {
-                AddListenerWithDefaultEquipmentSets(mission);
+                mission.AddListener(CreateTournamentFairArmourMissionListener(equipment));
             }
         }
 
-        private Equipment GetEquipmentSetByCultureOfCurrentSettlement()
+        private Equipment GetEquipmentByCultureOfCurrentSettlement()
         {
             var cultureStringId = Settlement.CurrentSettlement?.Culture?.StringId;
-            _equipmentSetByCulture.TryGetValue(cultureStringId ?? string.Empty, out var equipmentSet);
-            return equipmentSet;
-        }
-
-        private void AddListenerWithDefaultEquipmentSets(Mission mission)
-        {
-            _equipmentSetByCulture.TryGetValue(DefaultEquipmentSetStringId, out var equipmentSets);
-            if (equipmentSets != null)
-            {
-                mission.AddListener(CreateTournamentFairArmourMissionListener(equipmentSets));
-            }
+            return _settingsCampaignBehaviour.GetEquipment(cultureStringId);
         }
 
         private TournamentFairArmourMissionListener CreateTournamentFairArmourMissionListener(Equipment equipmentSet)
