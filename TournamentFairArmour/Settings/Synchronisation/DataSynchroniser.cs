@@ -45,7 +45,7 @@ namespace TournamentFairArmour.Settings.Synchronisation
         {
             SavedEquipment savedEquipment = new SavedEquipment();
 
-            foreach (var overriddenEquipmentIndex in TournamentFairArmourSubModule.OverriddenEquipmentIndices)
+            foreach (var overriddenEquipmentIndex in SubModule.OverriddenEquipmentIndices)
             {
                 if (!equipment[overriddenEquipmentIndex].IsEmpty)
                 {

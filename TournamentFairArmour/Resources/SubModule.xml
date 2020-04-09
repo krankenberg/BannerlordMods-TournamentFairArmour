@@ -15,7 +15,7 @@
         <SubModule>
             <Name value="TournamentFairArmour"/>
             <DLLName value="TournamentFairArmour.dll"/>
-            <SubModuleClassType value="TournamentFairArmour.TournamentFairArmourSubModule"/>
+            <SubModuleClassType value="TournamentFairArmour.SubModule"/>
             <Tags>
                 <Tag key="DedicatedServerType" value="none"/>
                 <Tag key="IsNoRenderModeElement" value="false"/>

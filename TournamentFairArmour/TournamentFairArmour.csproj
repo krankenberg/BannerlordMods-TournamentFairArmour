@@ -248,7 +248,7 @@
     <Compile Include="Settings\Synchronisation\DataSynchroniser.cs" />
     <Compile Include="Settings\Synchronisation\SettingsSaveDefiner.cs" />
     <Compile Include="TournamentFairArmourMissionListener.cs" />
-    <Compile Include="TournamentFairArmourSubModule.cs" />
+      <Compile Include="SubModule.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

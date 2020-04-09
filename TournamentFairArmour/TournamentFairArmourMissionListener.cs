@@ -16,7 +16,7 @@ namespace TournamentFairArmour
         {
             if (agent.IsHuman)
             {
-                foreach (var overriddenEquipmentIndex in TournamentFairArmourSubModule.OverriddenEquipmentIndices)
+                foreach (var overriddenEquipmentIndex in SubModule.OverriddenEquipmentIndices)
                 {
                     agent.SpawnEquipment[overriddenEquipmentIndex] = _tournamentEquipment[overriddenEquipmentIndex];
                 }

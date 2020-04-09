@@ -9,7 +9,7 @@ using TournamentFairArmour.Settings.Synchronisation;
 
 namespace TournamentFairArmour
 {
-    public class TournamentFairArmourSubModule : MBSubModuleBase
+    public class SubModule : MBSubModuleBase
     {
         internal const string DefaultEquipmentSetStringId = "default";
         private const string StringIdPrefix = "tournament_fair_armour_equipment_override_";

@@ -48,7 +48,7 @@ namespace TournamentFairArmour.Settings
             dictionary.TryGetValue(cultureStringId ?? string.Empty, out var equipment);
             if (equipment == null)
             {
-                dictionary.TryGetValue(TournamentFairArmourSubModule.DefaultEquipmentSetStringId, out equipment);
+                dictionary.TryGetValue(SubModule.DefaultEquipmentSetStringId, out equipment);
             }
 
             return equipment;
