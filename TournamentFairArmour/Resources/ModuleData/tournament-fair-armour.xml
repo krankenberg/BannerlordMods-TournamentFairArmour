@@ -13,8 +13,7 @@
         </equipmentSet>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_aserai"
-                  culture="Culture.aserai">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_aserai">
         <equipmentSet>
             <equipment slot="Cape"
                        id="Item.desert_leather_shoulderpad"/>
@@ -27,8 +26,7 @@
         </equipmentSet>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_vlandia"
-                  culture="Culture.vlandia">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_vlandia">
         <equipmentSet>
             <equipment slot="Cape"
                        id="Item.scarf"/>
@@ -41,8 +39,7 @@
         </equipmentSet>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_sturgia"
-                  culture="Culture.sturgia">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_sturgia">
         <equipmentSet>
             <equipment slot="Cape"
                        id="Item.wrapped_scarf"/>
@@ -55,8 +52,7 @@
         </equipmentSet>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_khuzait"
-                  culture="Culture.khuzait">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_khuzait">
         <equipmentSet>
             <equipment slot="Cape"
                        id="Item.wrapped_scarf"/>
@@ -69,8 +65,7 @@
         </equipmentSet>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_empire"
-                  culture="Culture.empire">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_empire">
         <equipmentSet>
             <equipment slot="Body"
                        id="Item.imperial_padded_cloth"/>
@@ -81,8 +76,7 @@
         </equipmentSet>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_battania"
-                  culture="Culture.battania">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_battania">
         <equipmentSet>
             <equipment slot="Cape"
                        id="Item.scarf"/>

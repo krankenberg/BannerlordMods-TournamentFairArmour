@@ -242,13 +242,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+      <Compile Include="DefaultEquipmentLoader.cs"/>
+      <Compile Include="ObjectManagerUtils.cs"/>
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="Settings\SettingsCampaignBehaviour.cs" />
     <Compile Include="Settings\SettingsMenu.cs" />
     <Compile Include="Settings\Synchronisation\DataSynchroniser.cs" />
     <Compile Include="Settings\Synchronisation\SettingsSaveDefiner.cs" />
-    <Compile Include="OverrideSpawnArmourMissionListener.cs"/>
-    <Compile Include="SubModule.cs"/>
+      <Compile Include="OverrideSpawnArmourMissionListener.cs"/>
+      <Compile Include="SubModule.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
