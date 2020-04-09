@@ -74,10 +74,14 @@ namespace TournamentFairArmour.Settings.Synchronisation
             var itemSlots = savedEquipment.ItemSlots;
             for (var i = 0; i < itemSlots.Length; i++)
             {
-                var itemObject = MBObjectManager.Instance.GetObject<ItemObject>(itemSlots[i]);
-                if (itemObject != null)
+                var itemSlot = itemSlots[i];
+                if (itemSlot != null)
                 {
-                    equipment[i] = new EquipmentElement(itemObject);
+                    var itemObject = MBObjectManager.Instance.GetObject<ItemObject>(itemSlot);
+                    if (itemObject != null)
+                    {
+                        equipment[i] = new EquipmentElement(itemObject);
+                    }
                 }
             }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
 
 namespace TournamentFairArmour.Settings
@@ -10,6 +11,6 @@ namespace TournamentFairArmour.Settings
 
     public class SavedEquipment
     {
-        [SaveableField(0)] public string[] ItemSlots;
+        [SaveableField(0)] public readonly string[] ItemSlots = new string[(int) EquipmentIndex.NumEquipmentSetSlots];
     }
 }
