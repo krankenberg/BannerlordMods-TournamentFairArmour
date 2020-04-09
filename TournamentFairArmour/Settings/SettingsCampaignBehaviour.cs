@@ -33,7 +33,7 @@ namespace TournamentFairArmour.Settings
 
         private void OnSessionLaunched(CampaignGameStarter campaignGameStarter)
         {
-            var settingsMenu = new SettingsMenu(_campaign);
+            var settingsMenu = new SettingsMenu(_campaign, _equipmentsByCulture);
             settingsMenu.CreateMenu(campaignGameStarter);
         }
 

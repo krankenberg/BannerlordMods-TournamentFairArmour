@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameMenus;
@@ -12,10 +13,12 @@ namespace TournamentFairArmour.Settings
         private const string ConfigureTournamentOptionsDisplayText = "Configure Tournament options...";
 
         private readonly Campaign _campaign;
+        private readonly Dictionary<string, Equipment> _equipmentsByCulture;
 
-        public SettingsMenu(Campaign campaign)
+        public SettingsMenu(Campaign campaign, Dictionary<string, Equipment> equipmentsByCulture)
         {
             _campaign = campaign;
+            _equipmentsByCulture = equipmentsByCulture;
         }
 
         public void CreateMenu(CampaignGameStarter campaignGameStarter)
