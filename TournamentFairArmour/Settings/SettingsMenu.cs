@@ -1,57 +1,55 @@
-using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameMenus;
-using TaleWorlds.Core;
+using TournamentFairArmour.Settings.Menu;
 
 namespace TournamentFairArmour.Settings
 {
     public class SettingsMenu
     {
         private const string TownArenaMenuStringId = "town_arena";
-        private const string TownArenaTournamentFairArmourSettingsMenuStringId = TownArenaMenuStringId + "_tournament_fair_armour_settings";
-        private const string ConfigureTournamentOptionsDisplayText = "Configure Tournament options...";
 
-        private readonly Campaign _campaign;
-        private readonly Dictionary<string, Equipment> _equipmentsByCulture;
+        private const string TournamentFairArmourSettings = "_tournament_fair_armour_settings";
 
-        public SettingsMenu(Campaign campaign, Dictionary<string, Equipment> equipmentsByCulture)
+        private const string ConfigureTournamentSettingsMenuOptionStringId = TownArenaMenuStringId + TournamentFairArmourSettings;
+
+        private const string ConfigureTournamentSettingsMenuItemDisplayText = "Configure Tournament Armour Settings";
+
+        private SelectCultureMenu _selectCultureMenu;
+        private readonly Context _context;
+
+        public SettingsMenu(SettingsCampaignBehaviour settingsCampaignBehaviour)
         {
-            _campaign = campaign;
-            _equipmentsByCulture = equipmentsByCulture;
+            _context = new Context(settingsCampaignBehaviour);
         }
 
         public void CreateMenu(CampaignGameStarter campaignGameStarter)
         {
-            var townArenaMenu = GetTownArenaMenu();
+            var townArenaMenu = GetMenu(TownArenaMenuStringId);
             campaignGameStarter.AddGameMenuOption(
                 TownArenaMenuStringId,
-                TownArenaTournamentFairArmourSettingsMenuStringId,
-                ConfigureTournamentOptionsDisplayText,
-                ConfigureIconAndReturnMenuItemVisibility,
-                OnMenuClick,
+                ConfigureTournamentSettingsMenuOptionStringId,
+                ConfigureTournamentSettingsMenuItemDisplayText,
+                menuCallbackArgs => AbstractMenu.ConfigureIconAndReturnMenuItemVisible(menuCallbackArgs, GameMenuOption.LeaveType.Submenu),
+                OpenSelectCultureMenu,
                 index: townArenaMenu.MenuOptions.Count() - 1
             );
+            _selectCultureMenu = new SelectCultureMenu(_context);
+            _selectCultureMenu.CreateMenu(campaignGameStarter);
         }
 
-        private GameMenu GetTownArenaMenu()
+        private void OpenSelectCultureMenu(MenuCallbackArgs menuCallbackArgs)
         {
-            var nextGameMenuId = _campaign.GameMenuManager.NextGameMenuId;
-            _campaign.GameMenuManager.SetNextMenu(TownArenaMenuStringId);
-            var townArenaMenu = _campaign.GameMenuManager.NextMenu;
-            _campaign.GameMenuManager.SetNextMenu(nextGameMenuId);
+            _selectCultureMenu.Open(TownArenaMenuStringId);
+        }
+
+        private GameMenu GetMenu(string menuId)
+        {
+            var nextGameMenuId = Campaign.Current.GameMenuManager.NextGameMenuId;
+            Campaign.Current.GameMenuManager.SetNextMenu(menuId);
+            var townArenaMenu = Campaign.Current.GameMenuManager.NextMenu;
+            Campaign.Current.GameMenuManager.SetNextMenu(nextGameMenuId);
             return townArenaMenu;
-        }
-
-        private bool ConfigureIconAndReturnMenuItemVisibility(MenuCallbackArgs menuCallBackArgs)
-        {
-            menuCallBackArgs.optionLeaveType = GameMenuOption.LeaveType.Submenu;
-            return true;
-        }
-
-        private void OnMenuClick(MenuCallbackArgs args)
-        {
-            InformationManager.DisplayMessage(new InformationMessage("OnMenuClick"));
         }
     }
 }

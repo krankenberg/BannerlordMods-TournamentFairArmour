@@ -11,13 +11,10 @@ namespace TournamentFairArmour.Settings
 
         private Dictionary<string, Equipment> _equipmentsByCulture = new Dictionary<string, Equipment>();
 
-        private readonly Campaign _campaign;
-
         private readonly DataSynchroniser _dataSynchroniser;
 
-        public SettingsCampaignBehaviour(Campaign campaign, DataSynchroniser dataSynchroniser)
+        public SettingsCampaignBehaviour(DataSynchroniser dataSynchroniser)
         {
-            _campaign = campaign;
             _dataSynchroniser = dataSynchroniser;
         }
 
@@ -33,8 +30,13 @@ namespace TournamentFairArmour.Settings
 
         private void OnSessionLaunched(CampaignGameStarter campaignGameStarter)
         {
-            var settingsMenu = new SettingsMenu(_campaign, _equipmentsByCulture);
+            var settingsMenu = new SettingsMenu(this);
             settingsMenu.CreateMenu(campaignGameStarter);
+        }
+
+        public EquipmentElement GetEquipmentSlot(string cultureStringId, EquipmentIndex equipmentIndex)
+        {
+            return GetEquipment(cultureStringId)[equipmentIndex];
         }
 
         public Equipment GetEquipment(string cultureStringId)
@@ -52,6 +54,23 @@ namespace TournamentFairArmour.Settings
             }
 
             return equipment;
+        }
+
+        public void SetEquipmentElement(string cultureStringId, EquipmentIndex equipmentIndex, EquipmentElement equipmentElement)
+        {
+            if (!_equipmentsByCulture.ContainsKey(cultureStringId))
+            {
+                _equipmentsByCulture[cultureStringId] = DefaultEquipmentsByCulture.ContainsKey(cultureStringId)
+                    ? DefaultEquipmentsByCulture[cultureStringId].Clone()
+                    : DefaultEquipmentsByCulture[SubModule.DefaultEquipmentSetStringId];
+            }
+
+            _equipmentsByCulture[cultureStringId][equipmentIndex] = equipmentElement;
+        }
+
+        public void ResetEquipmentSet(string cultureStringId)
+        {
+            _equipmentsByCulture.Remove(cultureStringId);
         }
     }
 }

@@ -10,6 +10,9 @@ namespace TournamentFairArmour
     public class SubModule : MBSubModuleBase
     {
         internal const string DefaultEquipmentSetStringId = "default";
+        internal const string DefaultEquipmentSetStringName = "Default";
+        internal const string NoItemStringId = "none";
+        internal const string NoItemStringName = "None";
 
         internal static readonly EquipmentIndex[] OverriddenEquipmentIndices =
         {
@@ -30,10 +33,10 @@ namespace TournamentFairArmour
 
         protected override void OnGameStart(Game game, IGameStarter gameStarterObject)
         {
-            if (game.GameType is Campaign campaign)
+            if (game.GameType is Campaign)
             {
                 CampaignGameStarter campaignGameStarter = (CampaignGameStarter) gameStarterObject;
-                _settingsCampaignBehaviour = new SettingsCampaignBehaviour(campaign, new DataSynchroniser());
+                _settingsCampaignBehaviour = new SettingsCampaignBehaviour(new DataSynchroniser());
                 campaignGameStarter.AddBehavior(_settingsCampaignBehaviour);
             }
         }
