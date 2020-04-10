@@ -7,6 +7,7 @@ namespace TournamentFairArmour.Settings
     public class Settings
     {
         [SaveableField(0)] public readonly Dictionary<string, SavedEquipment> EquipmentsByCulture = new Dictionary<string, SavedEquipment>();
+        [SaveableField(1)] public readonly List<string> DisabledCultureSets = new List<string>();
     }
 
     public class SavedEquipment
