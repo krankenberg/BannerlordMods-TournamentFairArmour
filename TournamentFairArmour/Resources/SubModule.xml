@@ -9,6 +9,7 @@
         <DependedModule Id="Native"/>
         <DependedModule Id="SandBoxCore"/>
         <DependedModule Id="Sandbox"/>
+        <DependedModule Id="CustomBattle"/>
         <DependedModule Id="StoryMode"/>
     </DependedModules>
     <SubModules>
