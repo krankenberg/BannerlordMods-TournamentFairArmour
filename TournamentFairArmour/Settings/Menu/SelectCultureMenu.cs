@@ -1,5 +1,6 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
 
 namespace TournamentFairArmour.Settings.Menu
@@ -33,6 +34,7 @@ namespace TournamentFairArmour.Settings.Menu
         {
             ObjectManagerUtils.GetAllMainCultureObjects()
                 .ForEach(cultureObject => CreateSelectCultureMenuItem(campaignGameStarter, cultureObject.StringId, cultureObject.Name.ToString()));
+            CreateMenuItemForReset(campaignGameStarter);
         }
 
         private void CreateSelectCultureMenuItem(CampaignGameStarter campaignGameStarter, string cultureStringId, string cultureName)
@@ -59,6 +61,38 @@ namespace TournamentFairArmour.Settings.Menu
             Context.CurrentlySelectedCultureId = cultureStringId;
             Context.CurrentlySelectedCultureName = cultureName;
             _selectEquipmentIndexMenu.Open(MenuId);
+        }
+
+        private void CreateMenuItemForReset(CampaignGameStarter campaignGameStarter)
+        {
+            campaignGameStarter.AddGameMenuOption(
+                MenuId,
+                GetMenuItemId("reset"),
+                "Reset",
+                menuCallbackArgs => ConfigureIconAndReturnMenuItemVisible(menuCallbackArgs, GameMenuOption.LeaveType.Escape),
+                menuCallbackArgs => InquireForEquipmentReset()
+            );
+        }
+
+        private void InquireForEquipmentReset()
+        {
+            InformationManager.ShowInquiry(new InquiryData(
+                "Reset all sets",
+                "Do you really want to reset all sets?",
+                true,
+                true,
+                "Reset",
+                "Cancel",
+                ResetEquipment,
+                () => { }
+            ));
+        }
+
+        private void ResetEquipment()
+        {
+            Context.SettingsCampaignBehaviour.ResetAllEquipmentSets();
+            GameMenu.SwitchToMenu(MenuId);
+            InformationManager.DisplayMessage(new InformationMessage("All sets were reset."));
         }
     }
 }

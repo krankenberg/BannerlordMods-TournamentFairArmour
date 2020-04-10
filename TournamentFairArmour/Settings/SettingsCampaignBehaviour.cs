@@ -72,5 +72,10 @@ namespace TournamentFairArmour.Settings
         {
             _equipmentsByCulture.Remove(cultureStringId);
         }
+
+        public void ResetAllEquipmentSets()
+        {
+            _equipmentsByCulture.Clear();
+        }
     }
 }
