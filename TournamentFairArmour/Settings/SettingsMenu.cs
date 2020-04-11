@@ -25,6 +25,7 @@ namespace TournamentFairArmour.Settings
 
         public void CreateMenu(CampaignGameStarter campaignGameStarter)
         {
+            CampaignEvents.OnBeforeSaveEvent.AddNonSerializedListener(this, SwitchToArenaMenuIfSomeMenuIsOpen);
             var townArenaMenu = GetMenu(TownArenaMenuStringId);
             campaignGameStarter.AddGameMenuOption(
                 TownArenaMenuStringId,
@@ -36,6 +37,15 @@ namespace TournamentFairArmour.Settings
             );
             _selectCultureMenu = new SelectCultureMenu(_context);
             _selectCultureMenu.CreateMenu(campaignGameStarter);
+        }
+
+        private void SwitchToArenaMenuIfSomeMenuIsOpen()
+        {
+            if (_context.MenuIdStack.Count > 0)
+            {
+                _context.MenuIdStack.Clear();
+                GameMenu.SwitchToMenu(TownArenaMenuStringId);
+            }
         }
 
         private void OpenSelectCultureMenu(MenuCallbackArgs menuCallbackArgs)
