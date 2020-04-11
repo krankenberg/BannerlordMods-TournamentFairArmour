@@ -11,6 +11,8 @@ namespace TournamentFairArmour.Settings.Menu
                                                    "If a culture has no specific set, the default set will be used.\n \n" +
                                                    "Hover over a culture to see total armour.";
 
+        private const string DisableStatusMenuTextKeyPrefix = TextKeyPrefix + "DISABLE_STATUS_";
+
         private SelectEquipmentIndexMenu _selectEquipmentIndexMenu;
 
         public SelectCultureMenu(Context context) : base(context, "select_culture_menu", MenuDescriptionText)
@@ -42,12 +44,24 @@ namespace TournamentFairArmour.Settings.Menu
             campaignGameStarter.AddGameMenuOption(
                 MenuId,
                 GetMenuItemId(cultureStringId),
-                cultureName,
+                cultureName + "{" + DisableStatusMenuTextKeyPrefix + cultureStringId + "}",
                 menuCallbackArgs => InitialiseMenuItem(cultureStringId, menuCallbackArgs),
                 menuCallbackArgs => SwitchToEquipmentPartChoiceMenu(cultureStringId, cultureName)
             );
         }
-        
+
+        protected override void OnOpenMenu(MenuCallbackArgs menuCallbackArgs)
+        {
+            GameTexts.SetVariable(DisableStatusMenuTextKeyPrefix + SubModule.DefaultEquipmentSetStringId, "");
+            ObjectManagerUtils.GetAllMainCultureObjects()
+                .ForEach(cultureObject =>
+                {
+                    var cultureId = cultureObject.StringId;
+                    GameTexts.SetVariable(DisableStatusMenuTextKeyPrefix + cultureId,
+                        Context.SettingsCampaignBehaviour.IsDisabled(cultureId) ? " (disabled)" : "");
+                });
+        }
+
         private bool InitialiseMenuItem(string cultureStringId, MenuCallbackArgs menuCallbackArgs)
         {
             var equipment = Context.SettingsCampaignBehaviour.GetEquipment(cultureStringId);

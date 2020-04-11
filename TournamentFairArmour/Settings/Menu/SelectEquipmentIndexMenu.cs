@@ -11,6 +11,7 @@ namespace TournamentFairArmour.Settings.Menu
         internal const string CultureNameMenuTextKey = TextKeyPrefix + "CULTURE";
         private const string CurrentEquipmentMenuTextKeyPrefix = TextKeyPrefix + "CURRRENT_";
         private const string TotalArmourMenuTextKey = TextKeyPrefix + "TOTAL_ARMOUR";
+        private const string ToggleDisableMenuTextKey = TextKeyPrefix + "TOGGLE_DISABLE";
 
         private const string MenuDescriptionText = "Configure Armour for {" + CultureNameMenuTextKey + "}-set.\n \n" +
                                                    "Total Armour:\n" +
@@ -39,6 +40,7 @@ namespace TournamentFairArmour.Settings.Menu
             }
 
             CreateMenuItemForEquipmentReset(campaignGameStarter);
+            CreateMenuItemForToggleDisableCultureSet(campaignGameStarter);
         }
 
         protected override void AfterCreateMenu(CampaignGameStarter campaignGameStarter)
@@ -61,6 +63,12 @@ namespace TournamentFairArmour.Settings.Menu
             var equipment = Context.SettingsCampaignBehaviour.GetEquipment(Context.CurrentlySelectedCultureId);
             var totalArmourString = ObjectManagerUtils.BuildTooltipString(equipment);
             GameTexts.SetVariable(TotalArmourMenuTextKey, totalArmourString);
+            GameTexts.SetVariable(ToggleDisableMenuTextKey, GetDisableToggleText());
+        }
+
+        private string GetDisableToggleText()
+        {
+            return Context.SettingsCampaignBehaviour.IsDisabled(Context.CurrentlySelectedCultureId) ? "Enable" : "Disable";
         }
 
         private void CreateMenuItemForEquipmentChoice(CampaignGameStarter campaignGameStarter, EquipmentIndex equipmentIndex)
@@ -97,6 +105,29 @@ namespace TournamentFairArmour.Settings.Menu
                 menuCallbackArgs => ConfigureIconAndReturnMenuItemVisible(menuCallbackArgs, GameMenuOption.LeaveType.Escape),
                 menuCallbackArgs => InquireForEquipmentReset()
             );
+        }
+
+        private void CreateMenuItemForToggleDisableCultureSet(CampaignGameStarter campaignGameStarter)
+        {
+            campaignGameStarter.AddGameMenuOption(
+                MenuId,
+                GetMenuItemId("disable"),
+                "{" + ToggleDisableMenuTextKey + "}",
+                IsToggleDisableMenuItemVisible,
+                menuCallbackArgs => ToggleDisableStatus()
+            );
+        }
+
+        private bool IsToggleDisableMenuItemVisible(MenuCallbackArgs menuCallbackArgs)
+        {
+            menuCallbackArgs.optionLeaveType = GameMenuOption.LeaveType.Wait;
+            return Context.CurrentlySelectedCultureId != SubModule.DefaultEquipmentSetStringId;
+        }
+
+        private void ToggleDisableStatus()
+        {
+            Context.SettingsCampaignBehaviour.ToggleDisableStatus(Context.CurrentlySelectedCultureId);
+            GameMenu.SwitchToMenu(MenuId);
         }
 
         private void InquireForEquipmentReset()

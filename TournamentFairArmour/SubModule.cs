@@ -69,7 +69,7 @@ namespace TournamentFairArmour
         private Equipment GetEquipmentByCultureOfCurrentSettlement()
         {
             var cultureStringId = Settlement.CurrentSettlement?.Culture?.StringId;
-            return _settingsCampaignBehaviour.GetEquipment(cultureStringId);
+            return _settingsCampaignBehaviour.GetEquipmentOrDefaultIfDisabled(cultureStringId);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace TournamentFairArmour.Settings
         public Dictionary<string, Equipment> DefaultEquipmentsByCulture = new Dictionary<string, Equipment>();
 
         private Dictionary<string, Equipment> _equipmentsByCulture = new Dictionary<string, Equipment>();
+        private List<string> _disabledCultures = new List<string>();
 
         private readonly DataSynchroniser _dataSynchroniser;
 
@@ -37,6 +38,22 @@ namespace TournamentFairArmour.Settings
         public EquipmentElement GetEquipmentSlot(string cultureStringId, EquipmentIndex equipmentIndex)
         {
             return GetEquipment(cultureStringId)[equipmentIndex];
+        }
+
+        public Equipment GetEquipmentOrDefaultIfDisabled(string cultureStringId)
+        {
+            if (IsDisabled(cultureStringId))
+            {
+                _equipmentsByCulture.TryGetValue(SubModule.DefaultEquipmentSetStringId, out var equipment);
+                if (equipment == null)
+                {
+                    DefaultEquipmentsByCulture.TryGetValue(SubModule.DefaultEquipmentSetStringId, out equipment);
+                }
+
+                return equipment;
+            }
+
+            return GetEquipment(cultureStringId);
         }
 
         public Equipment GetEquipment(string cultureStringId)
@@ -71,11 +88,30 @@ namespace TournamentFairArmour.Settings
         public void ResetEquipmentSet(string cultureStringId)
         {
             _equipmentsByCulture.Remove(cultureStringId);
+            _disabledCultures.Remove(cultureStringId);
         }
 
         public void ResetAllEquipmentSets()
         {
             _equipmentsByCulture.Clear();
+            _disabledCultures.Clear();
+        }
+
+        public bool IsDisabled(string cultureId)
+        {
+            return _disabledCultures.Contains(cultureId);
+        }
+
+        public void ToggleDisableStatus(string cultureId)
+        {
+            if (IsDisabled(cultureId))
+            {
+                _disabledCultures.Remove(cultureId);
+            }
+            else
+            {
+                _disabledCultures.Add(cultureId);
+            }
         }
     }
 }
