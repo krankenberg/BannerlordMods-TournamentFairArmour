@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+      <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+          <HintPath>..\..\..\..\bin\Win64_Shipping_Client\Newtonsoft.Json.dll</HintPath>
+          <Private>False</Private>
+      </Reference>
     <Reference Include="SandBox, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\..\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll</HintPath>
       <Private>False</Private>
@@ -242,12 +246,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TournamentFairArmourMissionListener.cs" />
-    <Compile Include="TournamentFairArmourSubModule.cs" />
+      <Compile Include="DefaultEquipmentLoader.cs"/>
+      <Compile Include="ObjectManagerUtils.cs"/>
+      <Compile Include="Settings\Menu\AbstractMenu.cs"/>
+      <Compile Include="Settings\Menu\Context.cs"/>
+      <Compile Include="Settings\Menu\SelectCultureMenu.cs"/>
+      <Compile Include="Settings\Menu\SelectEquipmentElementMenu.cs"/>
+      <Compile Include="Settings\Menu\SelectEquipmentIndexMenu.cs"/>
+    <Compile Include="Settings\Settings.cs" />
+    <Compile Include="Settings\SettingsCampaignBehaviour.cs" />
+    <Compile Include="Settings\SettingsMenu.cs" />
+    <Compile Include="Settings\Synchronisation\DataSynchroniser.cs" />
+      <Compile Include="OverrideSpawnArmourMissionListener.cs"/>
+      <Compile Include="SubModule.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\**" CopyToOutputDirectory="PreserveNewest" Link="..\..\%(RecursiveDir)\%(Filename)%(Extension)" />
+    <None Include="Resources\**" CopyToOutputDirectory="Always" Link="..\..\%(RecursiveDir)\%(Filename)%(Extension)" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
