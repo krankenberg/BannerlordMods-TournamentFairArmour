@@ -3,11 +3,11 @@ using TaleWorlds.MountAndBlade;
 
 namespace TournamentFairArmour
 {
-    public class TournamentFairArmourMissionListener : IMissionListener
+    public class OverrideSpawnArmourMissionListener : IMissionListener
     {
         private readonly Equipment _tournamentEquipment;
 
-        public TournamentFairArmourMissionListener(Equipment tournamentEquipment)
+        public OverrideSpawnArmourMissionListener(Equipment tournamentEquipment)
         {
             _tournamentEquipment = tournamentEquipment;
         }
@@ -16,7 +16,7 @@ namespace TournamentFairArmour
         {
             if (agent.IsHuman)
             {
-                foreach (var overriddenEquipmentIndex in TournamentFairArmourSubModule.OverriddenEquipmentIndices)
+                foreach (var overriddenEquipmentIndex in SubModule.OverriddenEquipmentIndices)
                 {
                     agent.SpawnEquipment[overriddenEquipmentIndex] = _tournamentEquipment[overriddenEquipmentIndex];
                 }
