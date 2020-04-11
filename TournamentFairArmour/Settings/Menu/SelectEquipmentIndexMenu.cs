@@ -128,6 +128,8 @@ namespace TournamentFairArmour.Settings.Menu
         {
             Context.SettingsCampaignBehaviour.ToggleDisableStatus(Context.CurrentlySelectedCultureId);
             GameMenu.SwitchToMenu(MenuId);
+            string disabledStatus = Context.SettingsCampaignBehaviour.IsDisabled(Context.CurrentlySelectedCultureId) ? "disabled" : "enabled";
+            InformationManager.DisplayMessage(new InformationMessage($"{Context.CurrentlySelectedCultureName}-set was {disabledStatus}."));
         }
 
         private void InquireForEquipmentReset()
