@@ -26,7 +26,7 @@ namespace TournamentFairArmour.Settings
 
         public override void SyncData(IDataStore dataStore)
         {
-            _dataSynchroniser.SynchroniseData(dataStore, _equipmentsByCulture);
+            _dataSynchroniser.SynchroniseData(dataStore, _equipmentsByCulture, _disabledCultures);
         }
 
         private void OnSessionLaunched(CampaignGameStarter campaignGameStarter)

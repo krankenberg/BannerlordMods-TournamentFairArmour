@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
@@ -8,34 +9,47 @@ namespace TournamentFairArmour.Settings.Synchronisation
     {
         private const string SettingsSaveKey = "TournamentFairArmourSettings";
 
-        public void SynchroniseData(IDataStore dataStore, Dictionary<string, Equipment> equipmentsByCulture)
+        public void SynchroniseData(IDataStore dataStore, Dictionary<string, Equipment> equipmentsByCulture, List<string> disabledCultures)
         {
-            Settings settings = null;
+            string settingsAsJson = null;
             if (dataStore.IsSaving)
             {
-                settings = CreateSettings(equipmentsByCulture);
+                Settings settings = CreateSettings(equipmentsByCulture, disabledCultures);
+
+                settingsAsJson = JsonConvert.SerializeObject(settings);
             }
 
-            dataStore.SyncData(SettingsSaveKey, ref settings);
+            dataStore.SyncData(SettingsSaveKey, ref settingsAsJson);
 
             if (dataStore.IsLoading)
             {
-                LoadFromSettings(settings, equipmentsByCulture);
+                if (settingsAsJson != null)
+                {
+                    Settings settings = JsonConvert.DeserializeObject<Settings>(settingsAsJson);
+                    LoadFromSettings(settings, equipmentsByCulture, disabledCultures);
+                }
             }
         }
 
-        private Settings CreateSettings(Dictionary<string, Equipment> equipmentsByCulture)
+        private Settings CreateSettings(Dictionary<string, Equipment> equipmentsByCulture, List<string> disabledCultures)
         {
-            return ConvertEquipmentDictionaryToSettings(equipmentsByCulture);
+            var settings = ConvertEquipmentDictionaryToSettings(equipmentsByCulture);
+            settings.DisabledCultureSets = disabledCultures;
+            return settings;
         }
 
         private Settings ConvertEquipmentDictionaryToSettings(Dictionary<string, Equipment> equipmentsByCulture)
         {
             var settings = new Settings();
 
-            foreach (var entry in equipmentsByCulture)
+            if (equipmentsByCulture.Count > 0)
             {
-                settings.EquipmentsByCulture[entry.Key] = CreateSavedEquipment(entry.Value);
+                settings.EquipmentsByCulture = new Dictionary<string, SavedEquipment>();
+
+                foreach (var entry in equipmentsByCulture)
+                {
+                    settings.EquipmentsByCulture[entry.Key] = CreateSavedEquipment(entry.Value);
+                }
             }
 
             return settings;
@@ -44,6 +58,7 @@ namespace TournamentFairArmour.Settings.Synchronisation
         private SavedEquipment CreateSavedEquipment(Equipment equipment)
         {
             SavedEquipment savedEquipment = new SavedEquipment();
+            savedEquipment.ItemSlots = new string[(int) EquipmentIndex.NumEquipmentSetSlots];
 
             foreach (var overriddenEquipmentIndex in SubModule.OverriddenEquipmentIndices)
             {
@@ -56,14 +71,20 @@ namespace TournamentFairArmour.Settings.Synchronisation
             return savedEquipment;
         }
 
-        private void LoadFromSettings(Settings settings, Dictionary<string, Equipment> equipmentsByCulture)
+        private void LoadFromSettings(Settings settings, Dictionary<string, Equipment> equipmentsByCulture, List<string> disabledCultures)
         {
-            if (settings != null)
+            if (settings.EquipmentsByCulture != null)
             {
                 foreach (var savedEquipmentSet in settings.EquipmentsByCulture)
                 {
                     equipmentsByCulture[savedEquipmentSet.Key] = CreateEquipment(savedEquipmentSet.Value);
                 }
+            }
+
+            if (settings.DisabledCultureSets != null)
+            {
+                disabledCultures.Clear();
+                disabledCultures.AddRange(settings.DisabledCultureSets);
             }
         }
 
