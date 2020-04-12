@@ -71,7 +71,8 @@ namespace TournamentFairArmour.Settings.Menu
                 GetMenuItemId(LeaveMenuItemIdSuffix),
                 LeaveDisplayText,
                 menuCallbackArgs => ConfigureIconAndReturnMenuItemVisible(menuCallbackArgs, GameMenuOption.LeaveType.Leave),
-                menuCallbackArgs => LeaveMenu()
+                menuCallbackArgs => LeaveMenu(),
+                true
             );
         }
 

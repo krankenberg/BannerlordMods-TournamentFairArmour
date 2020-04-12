@@ -1,4 +1,4 @@
-﻿using SandBox.TournamentMissions.Missions;
+﻿using SandBox;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
@@ -51,7 +51,7 @@ namespace TournamentFairArmour
 
         public override void OnMissionBehaviourInitialize(Mission mission)
         {
-            if (mission.HasMissionBehaviour<TournamentBehavior>())
+            if (mission.HasMissionBehaviour<TournamentFightMissionController>())
             {
                 AddOverrideSpawnArmourMissionListener(mission);
             }
