@@ -14,7 +14,7 @@
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
+        <PlatformTarget>x64</PlatformTarget>
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
@@ -24,7 +24,7 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
+        <PlatformTarget>x64</PlatformTarget>
         <DebugType>None</DebugType>
         <Optimize>true</Optimize>
         <ReleaseWorkingDirectory>..\target\</ReleaseWorkingDirectory>
@@ -204,6 +204,10 @@
         </Reference>
         <Reference Include="TaleWorlds.Network, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>..\..\..\..\bin\Win64_Shipping_Client\TaleWorlds.Network.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="TaleWorlds.ObjectSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>..\..\..\..\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="TaleWorlds.PlatformService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
