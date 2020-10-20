@@ -50,7 +50,7 @@ namespace TournamentFairArmour
 
         private static int CalculateArmourSum(EquipmentElement equipmentElement)
         {
-            return equipmentElement.GetArmArmor() + equipmentElement.GetHeadArmor() + equipmentElement.GetBodyArmorHuman() + equipmentElement.GetLegArmor();
+            return equipmentElement.GetModifiedArmArmor() + equipmentElement.GetModifiedHeadArmor() + equipmentElement.GetModifiedBodyArmor() + equipmentElement.GetModifiedLegArmor();
         }
 
         public static string BuildTooltipString(EquipmentElement equipmentElement)
@@ -63,10 +63,10 @@ namespace TournamentFairArmour
                 messageParts.Add(cultureObject.Name + "\n");
             }
 
-            AddArmourValueString(messageParts, "Head", equipmentElement.GetHeadArmor());
-            AddArmourValueString(messageParts, "Arm", equipmentElement.GetArmArmor());
-            AddArmourValueString(messageParts, "Body", equipmentElement.GetBodyArmorHuman());
-            AddArmourValueString(messageParts, "Leg", equipmentElement.GetLegArmor());
+            AddArmourValueString(messageParts, "Head", equipmentElement.GetModifiedHeadArmor());
+            AddArmourValueString(messageParts, "Arm", equipmentElement.GetModifiedArmArmor());
+            AddArmourValueString(messageParts, "Body", equipmentElement.GetModifiedBodyArmor());
+            AddArmourValueString(messageParts, "Leg", equipmentElement.GetModifiedLegArmor());
 
             return string.Join("\n", messageParts);
         }
