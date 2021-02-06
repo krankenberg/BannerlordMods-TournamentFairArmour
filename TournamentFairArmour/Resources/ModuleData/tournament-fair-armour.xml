@@ -1,108 +1,122 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <NPCCharacters>
     <NPCCharacter id="tournament_fair_armour_equipment_override_default">
-        <equipmentSet>
-            <equipment slot="Head"
-                       id="Item.roundkettle_over_laced_cloth"/>
-            <equipment slot="Cape"
-                       id="Item.scarf"/>
-            <equipment slot="Body"
-                       id="Item.padded_leather_overcoat"/>
-            <equipment slot="Gloves"
-                       id="Item.lordly_padded_mitten"/>
-            <equipment slot="Leg"
-                       id="Item.strapped_leather_boots"/>
-        </equipmentSet>
+        <Equipments>
+            <EquipmentRoster>
+                <equipment slot="Head"
+                           id="Item.roundkettle_over_laced_cloth"/>
+                <equipment slot="Cape"
+                           id="Item.scarf"/>
+                <equipment slot="Body"
+                           id="Item.padded_leather_overcoat"/>
+                <equipment slot="Gloves"
+                           id="Item.lordly_padded_mitten"/>
+                <equipment slot="Leg"
+                           id="Item.strapped_leather_boots"/>
+            </EquipmentRoster>
+        </Equipments>
     </NPCCharacter>
 
     <NPCCharacter id="tournament_fair_armour_equipment_override_aserai">
-        <equipmentSet>
-            <equipment slot="Head"
-                       id="Item.trailed_desert_helmet"/>
-            <equipment slot="Cape"
-                       id="Item.aserai_horseman_shoulder"/>
-            <equipment slot="Body"
-                       id="Item.short_padded_robe"/>
-            <equipment slot="Gloves"
-                       id="Item.guarded_padded_vambrace"/>
-            <equipment slot="Leg"
-                       id="Item.wrapped_shoes"/>
-        </equipmentSet>
+        <Equipments>
+            <EquipmentRoster>
+                <equipment slot="Head"
+                           id="Item.trailed_desert_helmet"/>
+                <equipment slot="Cape"
+                           id="Item.aserai_horseman_shoulder"/>
+                <equipment slot="Body"
+                           id="Item.short_padded_robe"/>
+                <equipment slot="Gloves"
+                           id="Item.guarded_padded_vambrace"/>
+                <equipment slot="Leg"
+                           id="Item.wrapped_shoes"/>
+            </EquipmentRoster>
+        </Equipments>
     </NPCCharacter>
 
     <NPCCharacter id="tournament_fair_armour_equipment_override_vlandia">
-        <equipmentSet>
-            <equipment slot="Head"
-                       id="Item.kettle_helmet_over_padded_cap"/>
-            <equipment slot="Cape"
-                       id="Item.scarf"/>
-            <equipment slot="Body"
-                       id="Item.sleeveless_padded_short_coat"/>
-            <equipment slot="Gloves"
-                       id="Item.reinforced_leather_vambraces"/>
-            <equipment slot="Leg"
-                       id="Item.leather_cavalier_boots"/>
-        </equipmentSet>
+        <Equipments>
+            <EquipmentRoster>
+                <equipment slot="Head"
+                           id="Item.kettle_helmet_over_padded_cap"/>
+                <equipment slot="Cape"
+                           id="Item.scarf"/>
+                <equipment slot="Body"
+                           id="Item.sleeveless_padded_short_coat"/>
+                <equipment slot="Gloves"
+                           id="Item.reinforced_leather_vambraces"/>
+                <equipment slot="Leg"
+                           id="Item.leather_cavalier_boots"/>
+            </EquipmentRoster>
+        </Equipments>
     </NPCCharacter>
 
     <NPCCharacter id="tournament_fair_armour_equipment_override_sturgia">
-        <equipmentSet>
-            <equipment slot="Head"
-                       id="Item.spangenhelm_with_leather"/>
-            <equipment slot="Cape"
-                       id="Item.scarf"/>
-            <equipment slot="Body"
-                       id="Item.stitched_leather_vest"/>
-            <equipment slot="Gloves"
-                       id="Item.northern_brass_bracers"/>
-            <equipment slot="Leg"
-                       id="Item.mail_chausses"/>
-        </equipmentSet>
+        <Equipments>
+            <EquipmentRoster>
+                <equipment slot="Head"
+                           id="Item.spangenhelm_with_leather"/>
+                <equipment slot="Cape"
+                           id="Item.scarf"/>
+                <equipment slot="Body"
+                           id="Item.stitched_leather_vest"/>
+                <equipment slot="Gloves"
+                           id="Item.northern_brass_bracers"/>
+                <equipment slot="Leg"
+                           id="Item.mail_chausses"/>
+            </EquipmentRoster>
+        </Equipments>
     </NPCCharacter>
 
     <NPCCharacter id="tournament_fair_armour_equipment_override_khuzait">
-        <equipmentSet>
-            <equipment slot="Head"
-                       id="Item.plumed_fur_lined_helmet"/>
-            <equipment slot="Cape"
-                       id="Item.wrapped_scarf"/>
-            <equipment slot="Body"
-                       id="Item.khuzait_sturdy_armor"/>
-            <equipment slot="Gloves"
-                       id="Item.steppe_leather_vambraces"/>
-            <equipment slot="Leg"
-                       id="Item.reinforced_suede_boots"/>
-        </equipmentSet>
+        <Equipments>
+            <EquipmentRoster>
+                <equipment slot="Head"
+                           id="Item.plumed_fur_lined_helmet"/>
+                <equipment slot="Cape"
+                           id="Item.wrapped_scarf"/>
+                <equipment slot="Body"
+                           id="Item.khuzait_sturdy_armor"/>
+                <equipment slot="Gloves"
+                           id="Item.steppe_leather_vambraces"/>
+                <equipment slot="Leg"
+                           id="Item.reinforced_suede_boots"/>
+            </EquipmentRoster>
+        </Equipments>
     </NPCCharacter>
 
     <NPCCharacter id="tournament_fair_armour_equipment_override_empire">
-        <equipmentSet>
-            <equipment slot="Head"
-                       id="Item.imperial_mail_coif"/>
-            <equipment slot="Cape"
-                       id="Item.scarf"/>
-            <equipment slot="Body"
-                       id="Item.basic_imperial_leather_armor"/>
-            <equipment slot="Gloves"
-                       id="Item.padded_mitten"/>
-            <equipment slot="Leg"
-                       id="Item.strapped_leather_boots"/>
-        </equipmentSet>
+        <Equipments>
+            <EquipmentRoster>
+                <equipment slot="Head"
+                           id="Item.imperial_mail_coif"/>
+                <equipment slot="Cape"
+                           id="Item.scarf"/>
+                <equipment slot="Body"
+                           id="Item.basic_imperial_leather_armor"/>
+                <equipment slot="Gloves"
+                           id="Item.padded_mitten"/>
+                <equipment slot="Leg"
+                           id="Item.strapped_leather_boots"/>
+            </EquipmentRoster>
+        </Equipments>
     </NPCCharacter>
 
     <NPCCharacter id="tournament_fair_armour_equipment_override_battania">
-        <equipmentSet>
-            <equipment slot="Head"
-                       id="Item.leather_studdedhelm_over_roughscale"/>
-            <equipment slot="Cape"
-                       id="Item.battania_woodland_cloak"/>
-            <equipment slot="Body"
-                       id="Item.fur_armor"/>
-            <equipment slot="Gloves"
-                       id="Item.roughtied_leather_bracers"/>
-            <equipment slot="Leg"
-                       id="Item.battania_leather_boots"/>
-        </equipmentSet>
+        <Equipments>
+            <EquipmentRoster>
+                <equipment slot="Head"
+                           id="Item.leather_studdedhelm_over_roughscale"/>
+                <equipment slot="Cape"
+                           id="Item.battania_woodland_cloak"/>
+                <equipment slot="Body"
+                           id="Item.fur_armor"/>
+                <equipment slot="Gloves"
+                           id="Item.roughtied_leather_bracers"/>
+                <equipment slot="Leg"
+                           id="Item.battania_leather_boots"/>
+            </EquipmentRoster>
+        </Equipments>
     </NPCCharacter>
 
 </NPCCharacters>
