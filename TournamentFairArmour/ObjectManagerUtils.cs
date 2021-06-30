@@ -20,7 +20,8 @@ namespace TournamentFairArmour
         public static IEnumerable<EquipmentElement> GetAllEquipmentElements(EquipmentIndex equipmentIndex)
         {
             return Items
-                .FindAll(itemObject => Equipment.IsItemFitsToSlot(equipmentIndex, itemObject))
+                .All
+                .Where(itemObject => Equipment.IsItemFitsToSlot(equipmentIndex, itemObject))
                 .Select(itemObject => new EquipmentElement(itemObject))
                 .OrderBy(GetCultureStringId)
                 .ThenByDescending(CalculateArmourSum);
@@ -50,7 +51,8 @@ namespace TournamentFairArmour
 
         private static int CalculateArmourSum(EquipmentElement equipmentElement)
         {
-            return equipmentElement.GetModifiedArmArmor() + equipmentElement.GetModifiedHeadArmor() + equipmentElement.GetModifiedBodyArmor() + equipmentElement.GetModifiedLegArmor();
+            return equipmentElement.GetModifiedArmArmor() + equipmentElement.GetModifiedHeadArmor() + equipmentElement.GetModifiedBodyArmor() +
+                   equipmentElement.GetModifiedLegArmor();
         }
 
         public static string BuildTooltipString(EquipmentElement equipmentElement)
