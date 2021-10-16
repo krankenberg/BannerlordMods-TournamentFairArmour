@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <NPCCharacters>
-    <NPCCharacter id="tournament_fair_armour_equipment_override_default">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_default" culture="Culture.neutral_culture">
         <Equipments>
             <EquipmentRoster>
                 <equipment slot="Head"
@@ -17,7 +17,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_aserai">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_aserai" culture="Culture.aserai">
         <Equipments>
             <EquipmentRoster>
                 <equipment slot="Head"
@@ -34,7 +34,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_vlandia">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_vlandia" culture="Culture.vlandia">
         <Equipments>
             <EquipmentRoster>
                 <equipment slot="Head"
@@ -51,7 +51,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_sturgia">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_sturgia" culture="Culture.sturgia">
         <Equipments>
             <EquipmentRoster>
                 <equipment slot="Head"
@@ -68,7 +68,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_khuzait">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_khuzait" culture="Culture.khuzait">
         <Equipments>
             <EquipmentRoster>
                 <equipment slot="Head"
@@ -85,7 +85,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_empire">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_empire" culture="Culture.empire">
         <Equipments>
             <EquipmentRoster>
                 <equipment slot="Head"
@@ -102,7 +102,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_fair_armour_equipment_override_battania">
+    <NPCCharacter id="tournament_fair_armour_equipment_override_battania" culture="Culture.battania">
         <Equipments>
             <EquipmentRoster>
                 <equipment slot="Head"
